@@ -1,0 +1,149 @@
+
+
+.header{
+ background-color: #282828;
+ padding-bottom: 20px;
+}
+
+.logo{
+    font-family: 'BioRhyme', serif;
+    font-stretch: expanded;
+    font-size-adjust: auto;
+    font-weight: 500;
+}
+
+body{
+     background-color: #F7F7F7;
+    font-family: 'Slabo 27px', serif;
+
+}
+
+
+
+/*All things fonts*/
+h1{
+   color: #CCCCCC;
+   font-size: 2.5 rem;
+}
+
+h2, h3, h4{
+  color: #A55F00;
+}
+
+
+
+p{
+   color: #CCCCCC;
+   font-size: 1.5em;
+}
+
+.productList{
+  list-style-type: decimal;
+}
+
+.productPanel{
+  background-color: white;
+
+  margin-bottom:15px;
+  padding:10px;
+
+}
+
+.productPanelDetails{
+text-align: center;
+font-size: 1.2em;
+color: #0066c0;
+}
+
+.productDetailFont{
+  font-size: 1.2em;
+  color: #0066c0;
+}
+
+.productTotalFont{
+  font-size: 1.3em;
+  color: #0066c0;
+
+}
+
+.productImage{
+  margin-left: 13%;
+}
+
+.App{
+  background: white;
+}
+
+.checkoutPanel{
+  margin-top:10px;
+
+}
+.marginTop{
+  margin-top: 15px;
+}
+
+.checkoutPanelHeader{
+  background: green;
+  color:white;
+  font-size:1.2em;
+  margin-right: 15px;
+  margin-left: 1px;
+}
+
+
+/* -----------------  */
+
+.content{
+   padding-top:  50px;
+   background-color: #333333;
+}
+
+.more-verticle-space{
+    padding-bottom: 20%;
+}
+
+.margin-left-15{
+  padding-left: 15px;
+}
+
+.myinfo{
+
+    font-size:1em;
+    margin-bottom: 400px;
+
+}
+
+.footer{
+    padding:100px;
+    background-color: #282828;
+}
+
+
+
+.menubar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.menubar li {
+    float: left;
+}
+
+.menubar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.menubar li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.menubar .active {
+    background-color: #4CAF50;
+}
