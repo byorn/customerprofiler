@@ -14,7 +14,7 @@ public class PotentialSaverClassificationImpl implements  Classification {
 
     @Override
     public String getClassificationDescription() {
-        return "Spends less than 25% of their deposits every month";
+        return "Potential Saver";
     }
 
     @Override

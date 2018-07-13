@@ -16,7 +16,7 @@ public class FastSpenderClassificationImpl implements  Classification {
 
     @Override
     public String getClassificationDescription() {
-        return "Makes over 50% of their transactions in the month after midday";
+        return "Fast Spender";
     }
 
     @Override

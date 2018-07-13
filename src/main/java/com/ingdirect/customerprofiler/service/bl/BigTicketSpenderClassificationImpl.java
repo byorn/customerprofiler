@@ -12,7 +12,7 @@ public class BigTicketSpenderClassificationImpl implements  Classification {
 
     @Override
     public String getClassificationDescription() {
-        return "Makes one or more withdrawals over $1000 in the month";
+        return "Big Ticket Spender";
     }
 
     @Override

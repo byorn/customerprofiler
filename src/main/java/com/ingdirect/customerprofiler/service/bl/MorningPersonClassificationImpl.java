@@ -12,7 +12,7 @@ public class MorningPersonClassificationImpl implements  Classification {
 
     @Override
     public String getClassificationDescription() {
-        return "Makes over 50% of their transactions in the month before midday";
+        return "Morning Person";
     }
 
     @Override

@@ -19,7 +19,7 @@ public class TransactionProfileServiceImpl  implements TransactionProfileService
     private final DataAccess dataAccess;
 
     public TransactionProfileServiceImpl(){
-        dataAccess = new FileDataAccessImpl("data/testdata.txt");
+        dataAccess = new FileDataAccessImpl("data/data.txt");
     }
 
 
@@ -33,25 +33,43 @@ public class TransactionProfileServiceImpl  implements TransactionProfileService
 
         BigDecimal balance = dataAccess.getCurrentBalance(customerId);
 
-        Classification classification = getClassification(customerId,month,year);
-        String classficationDescription = classification != null?classification.getClassificationDescription():"No records found for the selected month";
+        String classification = getClassification(customerId,month,year);
 
-        return new CustomerProfileDTO(balance.toString(),classficationDescription,transactions);
+        return new CustomerProfileDTO(balance.toString(),classification,transactions);
     }
 
-    private Classification getClassification(Long customerId, int month, int year){
-        List<Classification> classifications = new ArrayList<>();
-        classifications.add(new AfternoonPersonClassificationImpl(dataAccess));
-        classifications.add(new BigTicketSpenderClassificationImpl(dataAccess));
-        classifications.add(new MorningPersonClassificationImpl(dataAccess));
-        classifications.add(new PotentialSaverClassificationImpl(dataAccess));
+    private String getClassification(Long customerId, int month, int year){
 
-        for(Classification classification: classifications){
+        StringBuilder classifications = new StringBuilder();
+
+        List<Classification> rules = new ArrayList<>();
+        rules.add(new AfternoonPersonClassificationImpl(dataAccess));
+        rules.add(new BigTicketSpenderClassificationImpl(dataAccess));
+        rules.add(new MorningPersonClassificationImpl(dataAccess));
+        rules.add(new PotentialSaverClassificationImpl(dataAccess));
+        rules.add(new FastSpenderClassificationImpl(dataAccess));
+        rules.add(new BigSpenderClassificationImpl(dataAccess));
+
+        boolean bigSpender = false;
+        boolean fastSpender = false;
+
+        for(Classification classification: rules){
             if(classification.isClassified(customerId,month,year)){
-                return classification;
+                if(classification instanceof BigSpenderClassificationImpl){
+                    bigSpender = true;
+                }
+                if(classification instanceof FastSpenderClassificationImpl){
+                    fastSpender = true;
+                }
+                classifications.append(classification.getClassificationDescription() + " ");
             }
         }
-        return null;
+
+        if(bigSpender && fastSpender){
+            classifications.append("Potential Loan");
+        }
+
+        return classifications.toString();
     }
 
 }

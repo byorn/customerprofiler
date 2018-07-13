@@ -34,6 +34,6 @@ Assumptions
 <li>Big Spender is classified if having transactions over $1000 and not equal to $1000</li>
 <li>Morning Person is classified if having transactions greater > 50% and txn time made earlier or equal to 12PM or the whole hour until 12.59PM noon</li>
 <li>Potential Saver is less than 25% of expenses, but not equal to 25%</li>
-<li>Classification messge: "No records found for the selected month" will be displayed if there is no classification </li>
 <li>Fast Spender is decided when the total expenses within seven days is greater than 75% of the deposit made (and not equal to 75%)</li>
+<li>There can be more than one classification, eg. Afternoon Person and Fast Spender, I will display all the relavent classifications</li>
 </ul>

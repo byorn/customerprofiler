@@ -14,7 +14,7 @@ public class BigSpenderClassificationImpl implements  Classification {
 
     @Override
     public String getClassificationDescription() {
-        return "Spends over 80% of their deposits every month";
+        return "Big Spender";
     }
 
     @Override
