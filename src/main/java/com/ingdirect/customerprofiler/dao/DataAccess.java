@@ -14,6 +14,6 @@ public interface DataAccess {
     long getTransactionCountHavingExcessWithdrawalOver1000(Long customerId, int month, int year);
     BigDecimal getTotalDepositAmount(Long customerId, int month, int year);
     BigDecimal getTotalExpenseAmount(Long customerId, int month, int year);
-
+    BigDecimal getCurrentBalance(Long customerId);
 
 }

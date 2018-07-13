@@ -70,6 +70,14 @@ public class FileDataAccessImpl implements DataAccess{
     }
 
     @Override
+    public BigDecimal getCurrentBalance(Long customerId) {
+        return this.fileDataList.stream()
+                .filter(fileData -> fileData.getCustomerId().equals(customerId))
+                .map(fileData -> fileData.getAmount())
+                .reduce(BigDecimal.ZERO,BigDecimal::add);
+    }
+
+    @Override
     public long getCountofTransactionDoneAfterMidDay(Long customerId, int month, int year) {
         return this.fileDataList.stream()
                 .filter(fileData -> fileData.getCustomerId().equals(customerId))

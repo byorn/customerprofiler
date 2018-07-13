@@ -69,6 +69,13 @@ public class FileDataAccessImplTests {
     }
 
     @Test
+    public void shouldReturnCurrentBalance(){
+        BigDecimal d = fileDataAccess.getCurrentBalance(80L);
+
+        Assert.assertEquals(100,d.intValue());
+    }
+
+    @Test
     public void shouldMatchExactData(){
         List<FileData> list = fileDataAccess.loadData();
         FileData fileData = list.stream().findFirst().get();
