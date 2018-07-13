@@ -61,7 +61,7 @@ public class TransactionProfileServiceImpl  implements TransactionProfileService
                 if(classification instanceof FastSpenderClassificationImpl){
                     fastSpender = true;
                 }
-                classifications.append(classification.getClassificationDescription() + " ");
+                classifications.append(classification.getClassificationDescription() + " / ");
             }
         }
 
