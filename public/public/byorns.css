@@ -118,7 +118,10 @@ color: #0066c0;
     background-color: #282828;
 }
 
-
+.comp{
+  margin-top:20px;
+  margin-left:-15px;
+}
 
 .menubar ul {
     list-style-type: none;

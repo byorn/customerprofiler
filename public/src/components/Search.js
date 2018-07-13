@@ -31,19 +31,19 @@ class Search extends Component {
   return (
       <div className="row">
           <div className="col-lg-2">
-             <span>CustomerId:</span>
+             <h3>Customer ID:</h3>
           </div>
           <div className="col-lg-2">
-            <input type="text" onChange={this.handleCustomerIdInput}/>
+            <input className="comp" type="text" onChange={this.handleCustomerIdInput}/>
+          </div>
+          <div className="col-lg-1">
+             <h3>Date:</h3>
           </div>
           <div className="col-lg-2">
-             <span>Date:</span>
-          </div>
-          <div className="col-lg-2">
-            <input type="date"  onChange={this.handleDateInput}/>
+            <input className="comp" type="date"  onChange={this.handleDateInput}/>
           </div>
           <div className="col-lg-3">
-          <button className="btn btn-success" onClick={searchData.bind(null,this.state.customerId,this.state.date)}>Search</button>
+          <button className="btn btn-success comp" onClick={searchData.bind(null,this.state.customerId,this.state.date)}>Search</button>
           </div>
       </div>
     );

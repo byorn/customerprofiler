@@ -3,7 +3,7 @@ Customer Profiling App
 Back End - Spring Boot 2 Framework <br/>
 Front End - React <br/>
 
-<br/><br/>
+<br/>
 
 Steps to Run
 --------------
@@ -12,7 +12,6 @@ c:\customerprofiler> gradlew build
 </br/>
 2) Run
 c:\customerprofiler> gradlew bootrun
-<br/>
 <br/>
 
 Developing on React

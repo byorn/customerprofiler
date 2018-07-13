@@ -30,10 +30,15 @@ class Result extends Component {
       <div>
          <div className="row">
               <div className="col-md-2">Classification:</div>
-              <div className="col-md-2"> {data.classification} </div>
+              <div className="col-md-4"> {data.classification} </div>
+         </div>
+         <div className="row">
+              <div className="col-md-2">Balance:</div>
+              <div className="col-md-2"> {data.balance} </div>
          </div>
 
           <div className="row">
+          <div className="col-md-12">
               <table className="table">
                 <thead className="thead-dark">
                   <tr>
@@ -47,12 +52,10 @@ class Result extends Component {
                   {list}
               </tbody>
               </table>
+              </div>
           </div>
 
-          <div className="row">
-              <div className="col-md-2">Balance:</div>
-              <div className="col-md-2"> {data.balance} </div>
-         </div>
+         
      </div>
     );
   }
