@@ -53,6 +53,21 @@ public class FileDataAccessImplTests {
         Assert.assertTrue(count==2);
     }
 
+
+    @Test
+    public void shouldReturTotalDepositAmount(){
+        BigDecimal d = fileDataAccess.getTotalDepositAmount(66L,6,2016);
+
+        Assert.assertEquals(d.intValue(),100);
+    }
+
+    @Test
+    public void shouldReturnTotalExpenseAmount(){
+        BigDecimal d = fileDataAccess.getTotalExpenseAmount(67L,6,2016);
+
+        Assert.assertEquals(-100,d.intValue());
+    }
+
     @Test
     public void shouldMatchExactData(){
         List<FileData> list = fileDataAccess.loadData();

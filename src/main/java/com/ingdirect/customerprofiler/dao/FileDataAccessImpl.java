@@ -50,6 +50,26 @@ public class FileDataAccessImpl implements DataAccess{
     }
 
     @Override
+    public BigDecimal getTotalDepositAmount(Long customerId, int month, int year) {
+        return this.fileDataList.stream()
+                .filter(fileData -> fileData.getCustomerId().equals(customerId))
+                .filter(fileData -> fileData.getDate().getMonth().getValue()==month && fileData.getDate().getYear()==year)
+                .filter(fileData -> fileData.getAmount().compareTo(BigDecimal.valueOf(0))>0)
+                .map(fileData -> fileData.getAmount())
+                .reduce(BigDecimal.ZERO,BigDecimal::add);
+    }
+
+    @Override
+    public BigDecimal getTotalExpenseAmount(Long customerId, int month, int year) {
+        return this.fileDataList.stream()
+                .filter(fileData -> fileData.getCustomerId().equals(customerId))
+                .filter(fileData -> fileData.getDate().getMonth().getValue()==month && fileData.getDate().getYear()==year)
+                .filter(fileData -> fileData.getAmount().compareTo(BigDecimal.valueOf(0))<0)
+                .map(fileData -> fileData.getAmount())
+                .reduce(BigDecimal.ZERO,BigDecimal::add);
+    }
+
+    @Override
     public long getCountofTransactionDoneAfterMidDay(Long customerId, int month, int year) {
         return this.fileDataList.stream()
                 .filter(fileData -> fileData.getCustomerId().equals(customerId))
