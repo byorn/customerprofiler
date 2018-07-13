@@ -25,6 +25,6 @@ public class TransactionProfileServiceImplTests {
         CustomerProfileDTO customerProfileDTO = transactionProfileService.buildCustomerProfile(customerId,date);
 
         //then
-        Assert.assertEquals("None",customerProfileDTO.getClassification());
+        Assert.assertEquals("No records found for the selected month",customerProfileDTO.getClassification());
     }
 }

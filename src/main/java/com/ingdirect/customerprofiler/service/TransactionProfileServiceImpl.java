@@ -34,7 +34,7 @@ public class TransactionProfileServiceImpl  implements TransactionProfileService
         BigDecimal balance = dataAccess.getCurrentBalance(customerId);
 
         Classification classification = getClassification(customerId,month,year);
-        String classficationDescription = classification != null?classification.getClassificationDescription():"None";
+        String classficationDescription = classification != null?classification.getClassificationDescription():"No records found for the selected month";
 
         return new CustomerProfileDTO(balance.toString(),classficationDescription,transactions);
     }
