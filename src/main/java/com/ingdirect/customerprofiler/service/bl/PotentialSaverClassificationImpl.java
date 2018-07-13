@@ -20,9 +20,12 @@ public class PotentialSaverClassificationImpl implements  Classification {
     @Override
     public boolean isClassified(Long customerId, int month, int year) {
 
-
         BigDecimal totalDeposit = fileDataAccess.getTotalDepositAmount(customerId, month, year);
         BigDecimal totalExpenses = fileDataAccess.getTotalExpenseAmount(customerId, month, year);
+
+        if(totalDeposit.longValue()==0){
+            return false;
+        }
 
         BigDecimal percent = totalExpenses.abs().multiply(new BigDecimal(100)).divide(totalDeposit);
         if (percent.floatValue() < 25) {

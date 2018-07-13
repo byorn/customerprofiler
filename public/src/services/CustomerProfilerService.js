@@ -1,6 +1,6 @@
 class CustomerProfilerService {
-  static getData() {
-    return fetch('/data.json').then(response => {
+  static getData(customerid, date) {
+    return fetch('/profile/'+customerid+"/"+date).then(response => {
       return response.json();
     }).catch(error => {
       return error;

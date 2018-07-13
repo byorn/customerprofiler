@@ -16,10 +16,14 @@ export function searchDataSuccess(data) {
   };
 }
 
-export function searchData() {
+export function searchData(customerid, date) {
+  if(!customerid || !date){
+    alert("Please enter a Customer ID and a Date");
+    return;
+  }
   return (dispatch) => {
    
-    return CustomerProfilerService.getData().then(data => {
+    return CustomerProfilerService.getData(customerid,date).then(data => {
       
       dispatch(searchDataSuccess(data));
     }).catch(error => {

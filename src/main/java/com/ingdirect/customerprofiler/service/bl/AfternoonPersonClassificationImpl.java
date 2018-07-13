@@ -21,7 +21,6 @@ public class AfternoonPersonClassificationImpl implements  Classification {
         long totalTxnsForTheMonth = fileDataAccess.getTransactionCount(customerId, month, year);
         long totalTxnsMadeAfterMidDay = fileDataAccess.getCountofTransactionDoneAfterMidDay(customerId, month, year);
 
-
         float percent = (totalTxnsMadeAfterMidDay * 100.0f) / totalTxnsForTheMonth;
         if (percent > 50) {
             return true;

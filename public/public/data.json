@@ -1,7 +1,1 @@
-{
-  "classification":"Afternoon Person",
-  "transactions": [ {"CustomerId":"3","Date":"9/05/2016 1:26:54 PM", "Amount":-13.94, "Description": "SIT MAURIS IPSUM SIT" },
-                  {"CustomerId":"5","Date":"4/08/2016 12:12:05 AM", "Amount":-19.79, "Description": "NISL ULLAMCORPER SED ELIT"}
-                ],
-  "currentBalance": -25.00
-}
+{"balance":"300.00","classification":"Test Classification","transactions":[{"customerId":56,"date":"2016-06-04T11:01:00","amount":-13.99,"description":"TEST MORNING PERSON"},{"customerId":56,"date":"2016-06-04T09:01:00","amount":-13.99,"description":"TEST MORNING PERSON"},{"customerId":56,"date":"2016-06-04T08:01:00","amount":-13.99,"description":"TEST MORNING PERSON"},{"customerId":56,"date":"2016-06-04T21:01:00","amount":-13.99,"description":"TEST MORNING PERSON"},{"customerId":56,"date":"2016-06-04T20:01:00","amount":-13.99,"description":"TEST MORNING PERSON"}]}

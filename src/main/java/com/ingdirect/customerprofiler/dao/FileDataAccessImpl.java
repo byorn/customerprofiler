@@ -119,7 +119,7 @@ public class FileDataAccessImpl implements DataAccess{
         FileData item = null;
         try{
             if(p.length == 4) {
-                item = new FileData(Long.parseLong(p[0]), Util.parseDate(p[1]), new BigDecimal(p[2]), p[3]);
+                item = new FileData(Long.parseLong(p[0]), Util.parseDateTime(p[1]), new BigDecimal(p[2]), p[3]);
             }
         }catch (ArrayIndexOutOfBoundsException a){
             a.printStackTrace();

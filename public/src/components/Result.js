@@ -16,10 +16,10 @@ class Result extends Component {
    if(data.transactions){
       for (var i of data.transactions) {
         list.push(<tr key={key}>
-                          <td> {i.CustomerId} </td>
-                          <td> {i.Date} </td>
-                          <td> {i.Amount} </td>
-                          <td> {i.Description} </td>
+                          <td> {i.customerId} </td>
+                          <td> {i.date} </td>
+                          <td> {i.amount} </td>
+                          <td> {i.description} </td>
                   </tr>);
         key++;
 
@@ -28,20 +28,32 @@ class Result extends Component {
 
   return (
       <div>
-           <table className="table">
-            <thead className="thead-dark">
-              <tr>
-                <th scope="col">CustomerId</th>
-                <th scope="col">Date</th>
-                <th scope="col">Amount</th>
-                <th scope="col">Description</th>
-              </tr>
-            </thead>
-            <tbody>
-          {list}
-          </tbody>
-          </table>
-    </div>
+         <div className="row">
+              <div className="col-md-2">Classification:</div>
+              <div className="col-md-2"> {data.classification} </div>
+         </div>
+
+          <div className="row">
+              <table className="table">
+                <thead className="thead-dark">
+                  <tr>
+                    <th scope="col">CustomerId</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {list}
+              </tbody>
+              </table>
+          </div>
+
+          <div className="row">
+              <div className="col-md-2">Balance:</div>
+              <div className="col-md-2"> {data.balance} </div>
+         </div>
+     </div>
     );
   }
 }
