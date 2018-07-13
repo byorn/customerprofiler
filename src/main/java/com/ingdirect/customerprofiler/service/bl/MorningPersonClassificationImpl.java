@@ -19,8 +19,8 @@ public class MorningPersonClassificationImpl implements  Classification {
     public boolean isClassified(Long customerId, int month, int year) {
 
 
-        long totalTxnsForTheMonth = fileDataAccess.getTxnCountForCustomerMonthAndYear(customerId, month, year);
-        long totalTxnsMadeBeforeMidDay = fileDataAccess.getTxnCountForCustomerMonthYearAndBeforeMidDay(customerId, month, year);
+        long totalTxnsForTheMonth = fileDataAccess.getTransactionCount(customerId, month, year);
+        long totalTxnsMadeBeforeMidDay = fileDataAccess.getCountofTransactionDoneBeforeAndOnMidDay(customerId, month, year);
 
 
         float percent = (totalTxnsMadeBeforeMidDay * 100.0f) / totalTxnsForTheMonth;

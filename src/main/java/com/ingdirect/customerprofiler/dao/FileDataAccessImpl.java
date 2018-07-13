@@ -24,7 +24,7 @@ public class FileDataAccessImpl implements DataAccess{
     }
 
     @Override
-    public List<FileData> getAllTxnsForCustomerMonthAndYear(Long customerId, int month, int year) {
+    public List<FileData> getAllTransactions(Long customerId, int month, int year) {
         return this.fileDataList.stream()
                 .filter(fileData -> fileData.getCustomerId().equals(customerId))
                 .filter(fileData -> fileData.getDate().getMonth().getValue()==month && fileData.getDate().getYear()==year)
@@ -33,7 +33,7 @@ public class FileDataAccessImpl implements DataAccess{
 
 
     @Override
-    public long getTxnCountForCustomerMonthAndYear(Long customerId, int month, int year) {
+    public long getTransactionCount(Long customerId, int month, int year) {
         return this.fileDataList.stream()
                 .filter(fileData -> fileData.getCustomerId().equals(customerId))
                 .filter(fileData -> fileData.getDate().getMonth().getValue()==month && fileData.getDate().getYear()==year)
@@ -41,7 +41,7 @@ public class FileDataAccessImpl implements DataAccess{
     }
 
     @Override
-    public long getTxnCountForCustomerMonthAndYearWithExcessWithdrawalOver1000(Long customerId, int month, int year) {
+    public long getTransactionCountHavingExcessWithdrawalOver1000(Long customerId, int month, int year) {
         return this.fileDataList.stream()
                 .filter(fileData -> fileData.getCustomerId().equals(customerId))
                 .filter(fileData -> fileData.getDate().getMonth().getValue()==month && fileData.getDate().getYear()==year)
@@ -50,7 +50,7 @@ public class FileDataAccessImpl implements DataAccess{
     }
 
     @Override
-    public long getTxnCountForCustomerMonthYearAndAfterMidDay(Long customerId, int month, int year) {
+    public long getCountofTransactionDoneAfterMidDay(Long customerId, int month, int year) {
         return this.fileDataList.stream()
                 .filter(fileData -> fileData.getCustomerId().equals(customerId))
                 .filter(fileData -> fileData.getDate().getMonth().getValue()==month &&
@@ -60,7 +60,7 @@ public class FileDataAccessImpl implements DataAccess{
     }
 
     @Override
-    public long getTxnCountForCustomerMonthYearAndBeforeMidDay(Long customerId, int month, int year) {
+    public long getCountofTransactionDoneBeforeAndOnMidDay(Long customerId, int month, int year) {
         return this.fileDataList.stream()
                 .filter(fileData -> fileData.getCustomerId().equals(customerId))
                 .filter(fileData -> fileData.getDate().getMonth().getValue()==month &&

@@ -6,9 +6,10 @@ import java.util.List;
 
 public interface DataAccess {
     List<FileData> loadData();
-    List<FileData> getAllTxnsForCustomerMonthAndYear(Long customerId, int month, int year);
-    long getTxnCountForCustomerMonthYearAndAfterMidDay(Long customerId, int month, int year);
-    long getTxnCountForCustomerMonthYearAndBeforeMidDay(Long customerId, int month, int year);
-    long getTxnCountForCustomerMonthAndYear(Long customerId, int month, int year);
-    long getTxnCountForCustomerMonthAndYearWithExcessWithdrawalOver1000(Long customerId, int month, int year);
+    List<FileData> getAllTransactions(Long customerId, int month, int year);
+    long getCountofTransactionDoneAfterMidDay(Long customerId, int month, int year);
+    long getCountofTransactionDoneBeforeAndOnMidDay(Long customerId, int month, int year);
+    long getTransactionCount(Long customerId, int month, int year);
+    long getTransactionCountHavingExcessWithdrawalOver1000(Long customerId, int month, int year);
+
 }

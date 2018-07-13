@@ -27,28 +27,28 @@ public class FileDataAccessImplTests {
 
     @Test
     public void shouldReturnDataForCustomerIDAndMonth(){
-        List<FileData> fileData = fileDataAccess.getAllTxnsForCustomerMonthAndYear(23L,6,2016);
+        List<FileData> fileData = fileDataAccess.getAllTransactions(23L,6,2016);
 
         Assert.assertTrue(fileData.size()==2);
     }
 
     @Test
     public void shouldReturnCountForCustomerIDAndMonthAndTimeAfterMidday(){
-        long count = fileDataAccess.getTxnCountForCustomerMonthYearAndAfterMidDay(23L,6,2016);
+        long count = fileDataAccess.getCountofTransactionDoneAfterMidDay(23L,6,2016);
 
         Assert.assertTrue(count==1);
     }
 
     @Test
     public void shouldReturnOneRecordForCustomerWithExcessWithdrawal(){
-        long count = fileDataAccess.getTxnCountForCustomerMonthAndYearWithExcessWithdrawalOver1000(44L,7,2016);
+        long count = fileDataAccess.getTransactionCountHavingExcessWithdrawalOver1000(44L,7,2016);
 
         Assert.assertTrue(count==1);
     }
 
     @Test
     public void shouldReturnOneRecordForCustomerMonthYearAndTxnTimeBeforeMidDay(){
-        long count = fileDataAccess.getTxnCountForCustomerMonthYearAndBeforeMidDay(55L,6,2016);
+        long count = fileDataAccess.getCountofTransactionDoneBeforeAndOnMidDay(55L,6,2016);
 
         Assert.assertTrue(count==2);
     }

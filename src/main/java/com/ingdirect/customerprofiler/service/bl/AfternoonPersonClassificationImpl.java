@@ -18,8 +18,8 @@ public class AfternoonPersonClassificationImpl implements  Classification {
     @Override
     public boolean isClassified(Long customerId, int month, int year) {
 
-        long totalTxnsForTheMonth = fileDataAccess.getTxnCountForCustomerMonthAndYear(customerId, month, year);
-        long totalTxnsMadeAfterMidDay = fileDataAccess.getTxnCountForCustomerMonthYearAndAfterMidDay(customerId, month, year);
+        long totalTxnsForTheMonth = fileDataAccess.getTransactionCount(customerId, month, year);
+        long totalTxnsMadeAfterMidDay = fileDataAccess.getCountofTransactionDoneAfterMidDay(customerId, month, year);
 
 
         float percent = (totalTxnsMadeAfterMidDay * 100.0f) / totalTxnsForTheMonth;

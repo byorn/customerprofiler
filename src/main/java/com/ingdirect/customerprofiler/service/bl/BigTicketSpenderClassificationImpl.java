@@ -18,7 +18,7 @@ public class BigTicketSpenderClassificationImpl implements  Classification {
     @Override
     public boolean isClassified(Long customerId, int month, int year) {
 
-        long count = fileDataAccess.getTxnCountForCustomerMonthAndYearWithExcessWithdrawalOver1000(customerId,month,year);
+        long count = fileDataAccess.getTransactionCountHavingExcessWithdrawalOver1000(customerId,month,year);
 
         if(count > 0){
             return true;
