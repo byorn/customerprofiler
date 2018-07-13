@@ -2,27 +2,28 @@ package com.ingdirect.customerprofiler.service.bl;
 
 import com.ingdirect.customerprofiler.dao.DataAccess;
 
-public class AfternoonPersonClassificationImpl implements  Classification {
+public class MorningPersonClassificationImpl implements  Classification {
 
     private final DataAccess fileDataAccess;
 
-    public AfternoonPersonClassificationImpl(DataAccess dataAccess){
+    public MorningPersonClassificationImpl(DataAccess dataAccess){
         this.fileDataAccess = dataAccess;
     }
 
     @Override
     public String getClassificationDescription() {
-        return "Makes over 50% of their transactions in the month after midday";
+        return "Makes one or more withdrawals over $1000 in the month";
     }
 
     @Override
     public boolean isClassified(Long customerId, int month, int year) {
 
+
         long totalTxnsForTheMonth = fileDataAccess.getTxnCountForCustomerMonthAndYear(customerId, month, year);
-        long totalTxnsMadeAfterMidDay = fileDataAccess.getTxnCountForCustomerMonthYearAndAfterMidDay(customerId, month, year);
+        long totalTxnsMadeBeforeMidDay = fileDataAccess.getTxnCountForCustomerMonthYearAndBeforeMidDay(customerId, month, year);
 
 
-        float percent = (totalTxnsMadeAfterMidDay * 100.0f) / totalTxnsForTheMonth;
+        float percent = (totalTxnsMadeBeforeMidDay * 100.0f) / totalTxnsForTheMonth;
         if (percent > 50) {
             return true;
         }

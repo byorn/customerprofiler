@@ -2,8 +2,6 @@ package com.ingdirect.customerprofiler.dao;
 
 import com.ingdirect.customerprofiler.dto.FileData;
 import com.ingdirect.customerprofiler.util.Util;
-import org.springframework.stereotype.Component;
-
 import java.io.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -11,9 +9,8 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-@Component
-public class FileDataAccessImpl implements DataAccess{
 
+public class FileDataAccessImpl implements DataAccess{
 
     private List<FileData> fileDataList;
 
@@ -27,29 +24,50 @@ public class FileDataAccessImpl implements DataAccess{
     }
 
     @Override
-    public List<FileData> searchByCustomerIDAndMonth(Long customerId,int month) {
+    public List<FileData> getAllTxnsForCustomerMonthAndYear(Long customerId, int month, int year) {
         return this.fileDataList.stream()
                 .filter(fileData -> fileData.getCustomerId().equals(customerId))
-                .filter(fileData -> fileData.getDate().getMonth().getValue()==month)
+                .filter(fileData -> fileData.getDate().getMonth().getValue()==month && fileData.getDate().getYear()==year)
                 .collect(Collectors.toList());
     }
 
+
     @Override
-    public long getTxnCountForCustomerIDAndMonth(Long customerId, int month) {
+    public long getTxnCountForCustomerMonthAndYear(Long customerId, int month, int year) {
         return this.fileDataList.stream()
                 .filter(fileData -> fileData.getCustomerId().equals(customerId))
-                .filter(fileData -> fileData.getDate().getMonth().getValue()==month)
+                .filter(fileData -> fileData.getDate().getMonth().getValue()==month && fileData.getDate().getYear()==year)
                 .count();
     }
 
     @Override
-    public long getTxnCountForCustomerIDAndMonthAndAfterMidDay(Long customerId, int month) {
+    public long getTxnCountForCustomerMonthAndYearWithExcessWithdrawalOver1000(Long customerId, int month, int year) {
         return this.fileDataList.stream()
                 .filter(fileData -> fileData.getCustomerId().equals(customerId))
-                .filter(fileData -> fileData.getDate().getMonth().getValue()==month && fileData.getDate().getHour()>=12)
+                .filter(fileData -> fileData.getDate().getMonth().getValue()==month && fileData.getDate().getYear()==year)
+                .filter(fileData -> fileData.getAmount().compareTo(BigDecimal.valueOf(-1000))<0)
                 .count();
     }
 
+    @Override
+    public long getTxnCountForCustomerMonthYearAndAfterMidDay(Long customerId, int month, int year) {
+        return this.fileDataList.stream()
+                .filter(fileData -> fileData.getCustomerId().equals(customerId))
+                .filter(fileData -> fileData.getDate().getMonth().getValue()==month &&
+                        fileData.getDate().getYear()==year &&
+                        fileData.getDate().getHour()>12)
+                .count();
+    }
+
+    @Override
+    public long getTxnCountForCustomerMonthYearAndBeforeMidDay(Long customerId, int month, int year) {
+        return this.fileDataList.stream()
+                .filter(fileData -> fileData.getCustomerId().equals(customerId))
+                .filter(fileData -> fileData.getDate().getMonth().getValue()==month &&
+                        fileData.getDate().getYear()==year &&
+                        fileData.getDate().getHour()<=12)
+                .count();
+    }
 
 
     private List<FileData> processInputFile(String inputFilePath) {

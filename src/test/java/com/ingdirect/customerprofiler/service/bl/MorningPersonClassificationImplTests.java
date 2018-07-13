@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AfternoonPersonClassificationImplTests {
+public class MorningPersonClassificationImplTests {
 
     DataAccess fileDataAccess;
     Classification classification;
@@ -14,12 +14,18 @@ public class AfternoonPersonClassificationImplTests {
     @Before
     public void setUp(){
         fileDataAccess = new FileDataAccessImpl("data/testdata.txt");
-        classification = new AfternoonPersonClassificationImpl(fileDataAccess);
+        classification = new MorningPersonClassificationImpl(fileDataAccess);
     }
 
     @Test
     public void shouldReturnTrueWhenMeetsCriteria(){
-        boolean isclassfied = classification.isClassified(33L,6,2016);
+        boolean isclassfied = classification.isClassified(56L,6,2016);
         Assert.assertTrue(isclassfied);
+    }
+
+    @Test
+    public void shouldReturnFalseWhenDoNotMeetCriteria(){
+        boolean isclassfied = classification.isClassified(57L,6,2016);
+        Assert.assertTrue(!isclassfied);
     }
 }
