@@ -4,6 +4,7 @@ import com.ingdirect.customerprofiler.dto.FileData;
 import com.ingdirect.customerprofiler.util.Util;
 import java.io.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -28,6 +29,15 @@ public class FileDataAccessImpl implements DataAccess{
         return this.fileDataList.stream()
                 .filter(fileData -> fileData.getCustomerId().equals(customerId))
                 .filter(fileData -> fileData.getDate().getMonth().getValue()==month && fileData.getDate().getYear()==year)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<FileData> getDepositTransactions(Long customerId, int month, int year) {
+        return this.fileDataList.stream()
+                .filter(fileData -> fileData.getCustomerId().equals(customerId))
+                .filter(fileData -> fileData.getDate().getMonth().getValue()==month && fileData.getDate().getYear()==year)
+                .filter(fileData -> fileData.getAmount().compareTo(BigDecimal.valueOf(0))>0)
                 .collect(Collectors.toList());
     }
 
@@ -64,6 +74,18 @@ public class FileDataAccessImpl implements DataAccess{
         return this.fileDataList.stream()
                 .filter(fileData -> fileData.getCustomerId().equals(customerId))
                 .filter(fileData -> fileData.getDate().getMonth().getValue()==month && fileData.getDate().getYear()==year)
+                .filter(fileData -> fileData.getAmount().compareTo(BigDecimal.valueOf(0))<0)
+                .map(fileData -> fileData.getAmount())
+                .reduce(BigDecimal.ZERO,BigDecimal::add);
+    }
+
+    @Override
+    public BigDecimal getTotalExpenseAmountWithin7Days(Long customerId, int month, int year, LocalDateTime givenDate) {
+        LocalDateTime seventhDay = givenDate.plusDays(7);
+        return this.fileDataList.stream()
+                .filter(fileData -> fileData.getCustomerId().equals(customerId))
+                .filter(fileData -> fileData.getDate().getMonth().getValue()==month && fileData.getDate().getYear()==year)
+                .filter(fileData -> fileData.getDate().isAfter(givenDate) && fileData.getDate().isBefore(seventhDay))
                 .filter(fileData -> fileData.getAmount().compareTo(BigDecimal.valueOf(0))<0)
                 .map(fileData -> fileData.getAmount())
                 .reduce(BigDecimal.ZERO,BigDecimal::add);

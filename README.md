@@ -35,4 +35,5 @@ Assumptions
 <li>Morning Person is classified if having transactions greater > 50% and txn time made earlier or equal to 12PM or the whole hour until 12.59PM noon</li>
 <li>Potential Saver is less than 25% of expenses, but not equal to 25%</li>
 <li>Classification messge: "No records found for the selected month" will be displayed if there is no classification </li>
+<li>Fast Spender is decided when the total expenses within seven days is greater than 75% of the deposit made (and not equal to 75%)</li>
 </ul>
