@@ -28,4 +28,10 @@ public class PotentialSaverClassificationImplTests {
         boolean isclassfied = classification.isClassified(71L,6,2016);
         Assert.assertTrue(!isclassfied);
     }
+
+    @Test
+    public void shouldReturnTrueWhenAlsoCalculatingDemicalFigures(){
+        boolean isclassfied = classification.isClassified(15L,6,2016);
+        Assert.assertTrue(isclassfied);
+    }
 }

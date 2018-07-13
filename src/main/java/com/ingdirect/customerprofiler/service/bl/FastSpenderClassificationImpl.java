@@ -28,7 +28,7 @@ public class FastSpenderClassificationImpl implements  Classification {
             BigDecimal depositAmount = fileData.getAmount();
             BigDecimal totalExpenseWithin7Days = fileDataAccess.getTotalExpenseAmountWithin7Days(customerId,month,year,fileData.getDate());
 
-            BigDecimal percent = totalExpenseWithin7Days.abs().multiply(new BigDecimal(100)).divide(depositAmount);
+            BigDecimal percent = totalExpenseWithin7Days.abs().multiply(new BigDecimal(100)).divide(depositAmount,2,BigDecimal.ROUND_HALF_UP);
             if (percent.floatValue() > 75) {
                 return true;
             }

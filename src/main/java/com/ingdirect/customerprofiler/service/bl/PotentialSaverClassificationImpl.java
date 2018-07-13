@@ -27,7 +27,7 @@ public class PotentialSaverClassificationImpl implements  Classification {
             return false;
         }
 
-        BigDecimal percent = totalExpenses.abs().multiply(new BigDecimal(100)).divide(totalDeposit);
+        BigDecimal percent = totalExpenses.abs().multiply(new BigDecimal(100)).divide(totalDeposit,2,BigDecimal.ROUND_HALF_UP);
         if (percent.floatValue() < 25) {
             return true;
         }
