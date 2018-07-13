@@ -2,27 +2,41 @@ package com.ingdirect.customerprofiler.dao;
 
 import com.ingdirect.customerprofiler.dto.FileData;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
 public class FileDataAccessImplTests {
 
-    @Autowired
-    FileDataAccessImpl fileDataAccess;
+    DataAccess fileDataAccess;
+
+    @Before
+    public void setUp(){
+        fileDataAccess = new FileDataAccessImpl("data/testdata.txt");
+    }
+
 
     @Test
     public void shouldReturnDataFromFile(){
         List<FileData> fileData = fileDataAccess.loadData();
         Assert.assertTrue(fileData.size()>0);
+    }
+
+    @Test
+    public void shouldReturnDataForCustomerIDAndMonth(){
+        List<FileData> fileData = fileDataAccess.searchByCustomerIDAndMonth(23L,6);
+
+        Assert.assertTrue(fileData.size()==2);
+    }
+
+    @Test
+    public void shouldReturnCountForCustomerIDAndMonthAndTimeAfterMidday(){
+        long count = fileDataAccess.getTxnCountForCustomerIDAndMonthAndAfterMidDay(23L,6);
+
+        Assert.assertTrue(count==1);
     }
 
     @Test

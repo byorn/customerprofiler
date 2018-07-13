@@ -14,10 +14,43 @@ import java.util.stream.Collectors;
 @Component
 public class FileDataAccessImpl implements DataAccess{
 
+
+    private List<FileData> fileDataList;
+
+    public FileDataAccessImpl(String inputFile){
+       this.fileDataList = processInputFile(inputFile);
+    }
+
     @Override
     public List<FileData> loadData() {
-        return processInputFile("data/data.txt");
+        return this.fileDataList;
     }
+
+    @Override
+    public List<FileData> searchByCustomerIDAndMonth(Long customerId,int month) {
+        return this.fileDataList.stream()
+                .filter(fileData -> fileData.getCustomerId().equals(customerId))
+                .filter(fileData -> fileData.getDate().getMonth().getValue()==month)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public long getTxnCountForCustomerIDAndMonth(Long customerId, int month) {
+        return this.fileDataList.stream()
+                .filter(fileData -> fileData.getCustomerId().equals(customerId))
+                .filter(fileData -> fileData.getDate().getMonth().getValue()==month)
+                .count();
+    }
+
+    @Override
+    public long getTxnCountForCustomerIDAndMonthAndAfterMidDay(Long customerId, int month) {
+        return this.fileDataList.stream()
+                .filter(fileData -> fileData.getCustomerId().equals(customerId))
+                .filter(fileData -> fileData.getDate().getMonth().getValue()==month && fileData.getDate().getHour()>=12)
+                .count();
+    }
+
+
 
     private List<FileData> processInputFile(String inputFilePath) {
 
@@ -39,11 +72,20 @@ public class FileDataAccessImpl implements DataAccess{
         String[] p = line.split(",");
         FileData item = null;
         try{
-
-            item = new FileData(Long.parseLong(p[0]), Util.parseDate(p[1]), new BigDecimal(p[2]),  p[3]);
-
+            if(p.length == 4) {
+                item = new FileData(Long.parseLong(p[0]), Util.parseDate(p[1]), new BigDecimal(p[2]), p[3]);
+            }
         }catch (ArrayIndexOutOfBoundsException a){
+            a.printStackTrace();
             System.out.println("error in line:" + line);
+        }catch (Exception a){
+            a.printStackTrace();
+            System.out.println("error in line:" + line);
+        }finally{
+            if(item == null){
+                System.out.println("CSV File format is incorrect, check if have spaces in the end");
+                throw new IllegalStateException("CSV File format is incorrect");
+            }
         }
 
         return item;
