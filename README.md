@@ -3,10 +3,14 @@ Customer Profiling App
 Back End - Spring Boot 2 Framework <br/>
 Front End - React <br/>
 
+Steps to Run
+------------
+Access the Page: <a href="http://www.hackfreeapps.org:8080"/>http://www.hackfreeapps.org:8080</a>
+
 <br/>
 
-Steps to Run
---------------
+Steps to Run in your local machine
+-----------------------------------
 1) Build --- c:\customerprofiler> gradlew build<br/>
 2) Run --- c:\customerprofiler> gradlew bootrun<br/>
 
