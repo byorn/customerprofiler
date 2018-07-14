@@ -7,19 +7,8 @@ Front End - React <br/>
 
 Steps to Run
 --------------
-1) Build
-c:\customerprofiler> gradlew build
-</br/>
-2) Run
-c:\customerprofiler> gradlew bootrun
-<br/>
-
-Developing on React
-------------------------
-Prerequsite: Have NPM Installed.<br/>
-inside the public folder: npm install
-to run in development mode: npm start
-to build production code: npm run build
+1) Build --- c:\customerprofiler> gradlew build<br/>
+2) Run --- c:\customerprofiler> gradlew bootrun<br/>
 
 Assumptions
 -----------
@@ -36,3 +25,10 @@ Assumptions
 <li>Fast Spender is decided when the total expenses within seven days is greater than 75% of the deposit made (and not equal to 75%)</li>
 <li>There can be more than one classification, eg. Afternoon Person and Fast Spender, I will display all the relavent classifications</li>
 </ul>
+
+Development on React Front End
+------------------------
+Prerequsite: Have NPM Installed.<br/>
+inside the public folder: i.e. c:\customerprofiler\public> npm install<br/>
+to run in development mode:  c:\customerprofiler\public> npm start <br/>
+to build production code:  c:\customerprofiler\public> npm run build<br/>
